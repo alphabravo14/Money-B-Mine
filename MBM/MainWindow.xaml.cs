@@ -26,8 +26,6 @@ namespace MBM
             InitializeComponent();
             InitializeData(canManipulateData);
 
-            // TEST WITH AMAZON CONNECTION STRINGS
-
             // GIT VERSION CONTROL
 
             // INSTALLER PACKAGE
@@ -96,7 +94,7 @@ namespace MBM
                 Dispatcher.Invoke(DispatcherPriority.Background,
                            new Action(() => LoadData(App.xmlFilePath))); // Use local XML if database connection issues
 
-                string logMessage = "Remote data unavailable - using local version instead. Record manipulation will be unavailable.";
+                string logMessage = "Remote database unavailable - using local version instead. Record manipulation will be unavailable.";
                 Logging.LogEvent(logMessage, logMessage, closeApplication: false);
             }
             catch (System.Net.WebException)
@@ -104,7 +102,7 @@ namespace MBM
                 Dispatcher.Invoke(DispatcherPriority.Background,
                            new Action(() => LoadData(App.xmlFilePath))); // Use local XML if web service connection issues
 
-                string logMessage = "Remote data unavailable - using local version instead. Record manipulation will be unavailable.";
+                string logMessage = "Remote web service unavailable - using local version instead. Record manipulation will be unavailable.";
                 Logging.LogEvent(logMessage, logMessage, closeApplication: false);
             }
             finally

@@ -18,6 +18,7 @@ namespace MBM
         private bool canManipulateData = false;
         private bool isLoadingData = false;
         private int numberOfRecords = 100;
+        private string xmlFilePath = App.xmlFilePathApp;
 
         public MainWindow(bool canManipulateData = false)
         {
@@ -34,7 +35,8 @@ namespace MBM
         private void InitializeData(bool canManipulateData)
         {
             if (DockLoading != null) DockLoading.Visibility = Visibility.Visible;
-            numberOfRecords = NumberOfRecords(); 
+            numberOfRecords = NumberOfRecords();
+            if (File.Exists(App.xmlFilePathMyDocs)) this.xmlFilePath = App.xmlFilePathMyDocs; // Use my documents XML file if it's been created
 
             var queue = new Helper.BackgroundQueue();
             queue.QueueTask(() => { LoadData(); });
@@ -77,15 +79,16 @@ namespace MBM
 
                 Dispatcher.Invoke(DispatcherPriority.Background, // Update the data grid
                            new Action(() => DataGridDailyPrices.ItemsSource = dataTableDailyPrices.DefaultView));
-
-                dataTableDailyPrices.WriteXml(App.xmlFilePath); // Save local XML copy for future use if needed
+                
+                dataTableDailyPrices.WriteXml(App.xmlFilePathMyDocs); // Save local XML copy for future use if needed
+                MessageBox.Show(App.xmlFilePathMyDocs);
 
                 Logging.LogSystemEvent("Money-B-Mine Loaded. Connected to remote DB, local XML file created."); // Log system event
             }
             catch (SqlException)
             {
                 Dispatcher.Invoke(DispatcherPriority.Background,
-                           new Action(() => LoadData(App.xmlFilePath))); // Use local XML if database connection issues
+                           new Action(() => LoadData(xmlFilePath))); // Use local XML if database connection issues
 
                 string logMessage = "Remote database unavailable - using local version instead. Record manipulation will be unavailable.";
                 Logging.LogEvent(logMessage, logMessage, closeApplication: false);
@@ -93,7 +96,7 @@ namespace MBM
             catch (System.Net.WebException)
             {
                 Dispatcher.Invoke(DispatcherPriority.Background,
-                           new Action(() => LoadData(App.xmlFilePath))); // Use local XML if web service connection issues
+                           new Action(() => LoadData(xmlFilePath))); // Use local XML if web service connection issues
 
                 string logMessage = "Remote web service unavailable - using local version instead. Record manipulation will be unavailable.";
                 Logging.LogEvent(logMessage, logMessage, closeApplication: false);

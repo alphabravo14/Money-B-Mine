@@ -1,0 +1,85 @@
+﻿<Window x:Class="MBM.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:gif="http://wpfanimatedgif.codeplex.com"
+        xmlns:local="clr-namespace:MBM"
+        mc:Ignorable="d"
+        Title="Money-B-Mine" Height="500" Width="900" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+
+    <Grid>
+        <!-- Top Filter Controls-->
+        <DatePicker HorizontalAlignment="Left" VerticalAlignment="Top" Width="95" Margin="2,0,0,0" SelectedDateChanged="DatePicker_SelectedDateChanged" x:Name="dateFilter">
+            <DatePicker.Resources>
+                <Style TargetType="DatePickerTextBox">
+                    <Setter Property="Text" Value="Select date"/>
+                </Style>
+            </DatePicker.Resources>
+        </DatePicker>
+
+        <TextBox HorizontalAlignment="Left" Margin="98,3,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"  TextChanged="TextboxFilter_Changed" Width="93" x:Name="textboxExchange"/>
+
+        <TextBox HorizontalAlignment="Left" Margin="192,3,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"  TextChanged="TextboxFilter_Changed" Width="93" x:Name="textboxSymbol"/>
+
+        <TextBox HorizontalAlignment="Left" Margin="286,3,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"  TextChanged="TextboxFilter_Changed" Width="93" Name="textboxPriceOpen"/>
+
+        <TextBox HorizontalAlignment="Left" Margin="381,3,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"  TextChanged="TextboxFilter_Changed" Width="93" x:Name="textboxPriceClose"/>
+
+        <TextBox HorizontalAlignment="Left" Margin="476,3,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"  TextChanged="TextboxFilter_Changed" Width="93" x:Name="textboxPriceLow"/>
+
+        <TextBox HorizontalAlignment="Left" Margin="571,3,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"  TextChanged="TextboxFilter_Changed" Width="93" x:Name="textboxPriceHigh"/>
+
+        <TextBox HorizontalAlignment="Left" Margin="666,3,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"  TextChanged="TextboxFilter_Changed" Width="93" x:Name="textboxPriceAdjClose"/>
+
+        <TextBox HorizontalAlignment="Left" Margin="761,3,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"  TextChanged="TextboxFilter_Changed" Width="93" x:Name="textboxVolume"/>
+
+        <!-- Daily Prices Grid -->
+        <DataGrid x:Name="DataGridDailyPrices" 
+                  ItemsSource="{Binding}" 
+                  AutoGenerateColumns="False" 
+                  AlternatingRowBackground="AliceBlue" 
+                  Background="White"
+                  CanUserResizeColumns="False"
+                  SelectionUnit="FullRow"
+                  SelectionMode="Extended"
+                  IsReadOnly="True"
+                  HeadersVisibility="Column" 
+                  Margin="0,25,0,28.5">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="95" Header="Date" Binding="{Binding date, StringFormat='dd/MM/yyyy'}"></DataGridTextColumn>
+                <DataGridTextColumn Width="95" Header="Stock Exchange" Binding="{Binding exchange}"></DataGridTextColumn>
+                <DataGridTextColumn Width="95" Header="Symbol" Binding="{Binding stock_symbol}"></DataGridTextColumn>
+                <DataGridTextColumn Width="95" Header="Price Open" Binding="{Binding stock_price_open, StringFormat=C}"></DataGridTextColumn>
+                <DataGridTextColumn Width="95" Header="Price Close" Binding="{Binding stock_price_close, StringFormat=C}"></DataGridTextColumn>
+                <DataGridTextColumn Width="95" Header="Price Low" Binding="{Binding stock_price_low, StringFormat=C}"></DataGridTextColumn>
+                <DataGridTextColumn Width="95" Header="Price High" Binding="{Binding stock_price_high, StringFormat=C}"></DataGridTextColumn>
+                <DataGridTextColumn Width="95" Header="Price Adj Close" Binding="{Binding stock_price_adj_close, StringFormat=C}"></DataGridTextColumn>
+                <DataGridTextColumn Width="*" Header="Volume" Binding="{Binding stock_volume, StringFormat='{}{0:#,0}'}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- Button List and Button Controls -->
+        <Label Content="Show last:" HorizontalAlignment="Left" Margin="10,0,0,2.5" VerticalAlignment="Bottom"/>
+        <ComboBox Name="comboRecords" HorizontalAlignment="Left" Margin="82,0,0,3.5" VerticalAlignment="Bottom" Width="120" DropDownClosed="comboRecords_SelectionChanged">
+            <ComboBoxItem IsSelected="True">100 Records</ComboBoxItem>
+            <ComboBoxItem>500 Records</ComboBoxItem>
+            <ComboBoxItem>1000 Records</ComboBoxItem>
+            <ComboBoxItem>All Records</ComboBoxItem>
+        </ComboBox>
+
+        <Button x:Name="buttonAdd" Content="Add" HorizontalAlignment="Left" Margin="213,0,0,4.5" VerticalAlignment="Bottom" Width="75" Click="buttonAdd_Click"/>
+        <Button x:Name="buttonEdit" Content="Edit" HorizontalAlignment="Left" Margin="297,0,0,4.5" VerticalAlignment="Bottom" Width="75" Click="buttonEdit_Click"/>
+        <Button x:Name="buttonDelete" Content="Delete" HorizontalAlignment="Left" Margin="381,0,0,4.5" VerticalAlignment="Bottom" Width="75" Click="buttonDelete_Click"/>
+
+        <Button x:Name="buttonSpecs" Content="Show System Specs" HorizontalAlignment="Right" Margin="0,0,206,4.5" VerticalAlignment="Bottom" Width="124" Click="btnShowSpecs_Click"/>
+        <Button Name="buttonCSV" Content="Export CSV" HorizontalAlignment="Right" Margin="0,0,73,4.5" VerticalAlignment="Bottom" Width="124" Click="btnSaveCSV_Click"/>
+        <Button Content="Help" HorizontalAlignment="Right" Margin="0,0,13,4.5" VerticalAlignment="Bottom" Width="50" Click="btnHelp_Click"/>
+        
+        <!-- Loading Panel -->
+        <DockPanel Margin="0,0,0,0" x:Name="DockLoading" Background="White">
+            <Image gif:ImageBehavior.AnimatedSource="Images/Loading.gif" Width="37" Height="37" VerticalAlignment="Top" />
+            <Label Content="Loading data..." FontSize="18" FontWeight="Bold" VerticalAlignment="Top" />
+        </DockPanel>
+    </Grid>
+</Window>

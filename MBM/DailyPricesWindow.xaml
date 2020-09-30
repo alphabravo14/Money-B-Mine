@@ -1,0 +1,34 @@
+﻿<Window x:Class="MBM.DailyPricesWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MBM"
+        mc:Ignorable="d"
+        Title="Daily Prices" Height="335" Width="300" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" ShowInTaskbar="False">
+    <Grid>
+        <!-- Labels -->
+        <Label Content="Date:" HorizontalAlignment="Left" Height="28" Margin="10,10,0,0" VerticalAlignment="Top" Width="100"/>
+        <Label Content="Stock Exchange:" HorizontalAlignment="Left" Height="28" Margin="10,38,0,0" VerticalAlignment="Top" Width="100"/>
+        <Label Content="Symbol:" HorizontalAlignment="Left" Height="28" Margin="10,66,0,0" VerticalAlignment="Top" Width="100"/>
+        <Label Content="Price Open:" HorizontalAlignment="Left" Height="28" Margin="10,94,0,0" VerticalAlignment="Top" Width="100"/>
+        <Label Content="Price Close:" HorizontalAlignment="Left" Height="28" Margin="10,122,0,0" VerticalAlignment="Top" Width="100"/>
+        <Label Content="Price Low:" HorizontalAlignment="Left" Height="28" Margin="10,150,0,0" VerticalAlignment="Top" Width="100"/>
+        <Label Content="Price High:" HorizontalAlignment="Left" Height="28" Margin="10,178,0,0" VerticalAlignment="Top" Width="100"/>
+        <Label Content="Price Adj Close:" HorizontalAlignment="Left" Height="28" Margin="10,206,0,0" VerticalAlignment="Top" Width="100"/>
+        <Label Content="Volume:" HorizontalAlignment="Left" Height="28" Margin="10,234,0,0" VerticalAlignment="Top" Width="100"/>
+        <Button Content="Save" HorizontalAlignment="Left" Margin="63,271,0,0" VerticalAlignment="Top" Width="75" Click="ButtonSave_Click"/>
+        <Button Content="Cancel" HorizontalAlignment="Left" Margin="147,271,0,0" VerticalAlignment="Top" Width="75" Click="ButtonCancel_Click"/>
+
+        <!-- Date and TextBox Controls -->
+        <DatePicker Name="datePicker" HorizontalAlignment="Left" Margin="115,13,0,0" VerticalAlignment="Top" Width="169"  KeyDown="KeyPressed"/>
+        <TextBox x:Name="textboxExchange" HorizontalAlignment="Left" Height="23" Margin="115,42,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="169" KeyDown="KeyPressed"/>
+        <TextBox x:Name="textboxSymbol" HorizontalAlignment="Left" Height="23" Margin="115,70,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="169" KeyDown="KeyPressed"/>
+        <TextBox x:Name="textboxPriceOpen" HorizontalAlignment="Left" Height="23" Margin="115,98,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="169" KeyDown="KeyPressed"/>
+        <TextBox x:Name="textboxPriceClose" HorizontalAlignment="Left" Height="23" Margin="115,126,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="169" KeyDown="KeyPressed"/>
+        <TextBox x:Name="textboxPriceLow" HorizontalAlignment="Left" Height="23" Margin="115,154,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="169"/>
+        <TextBox x:Name="textboxPriceHigh" HorizontalAlignment="Left" Height="23" Margin="115,182,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="169" KeyDown="KeyPressed"/>
+        <TextBox x:Name="textboxPriceAdjClose" HorizontalAlignment="Left" Height="23" Margin="115,210,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="169" KeyDown="KeyPressed"/>
+        <TextBox x:Name="textboxVolume" HorizontalAlignment="Left" Height="23" Margin="115,238,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="169" KeyDown="KeyPressed"/>
+    </Grid>
+</Window>

@@ -18,7 +18,8 @@ namespace MBM
         // Set local paths
         //public static readonly string connectionString = ConfigurationManager.ConnectionStrings["LocalDatabaseConnectionString"].ConnectionString;
         public static readonly string connectionString = ConfigurationManager.ConnectionStrings["AmazonConnectionString"].ConnectionString;
-        public static readonly string rootFolderPath = new DirectoryInfo(Environment.CurrentDirectory).Parent.Parent.FullName.ToString();
+        //public static readonly string rootFolderPath = new DirectoryInfo(Environment.CurrentDirectory).Parent.Parent.FullName.ToString(); // Development
+        public static readonly string rootFolderPath = new DirectoryInfo(Environment.CurrentDirectory).FullName.ToString(); // Release
         public static readonly string xmlFilePath = $@"{rootFolderPath}\App_Data\DailyPrices.xml";
         public static readonly string logFilePath = $@"{rootFolderPath}\Logs\{DateTime.Now:yyyy-dd-M-HH-mm-ss}.txt";
 

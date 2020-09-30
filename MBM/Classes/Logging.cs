@@ -17,12 +17,12 @@ namespace MBM.Classes
         {
             try
             {
-                File.AppendAllLines(App.logFilePath, new[] { message });
+                //File.AppendAllLines(App.logFilePath, new[] { message }); // Only for development
                 LogSystemEvent($"Money-B-Mine: {message}"); // Save system event
             }
             finally
             {
-                MessageBox.Show("An Unknown Error Occured. Please contact the development team.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Unexpected error: {message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 if (closeApplication == true)
                 {
                     Application.Current.Shutdown(); // exit the application
@@ -37,7 +37,7 @@ namespace MBM.Classes
         {
             try
             {
-                File.AppendAllLines(App.logFilePath, new[] { logMessage });
+                //File.AppendAllLines(App.logFilePath, new[] { logMessage }); // Only for development
                 LogSystemEvent($"Money-B-Mine: {logMessage}"); // Save system event
             }
             finally

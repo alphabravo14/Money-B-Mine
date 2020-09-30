@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MBM", "MBM\MBM.csproj", "{B
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebService", "WebService\WebService.csproj", "{1260DADF-5A7F-4C5E-B1B6-C59AC665E99E}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj", "{BC0A2077-65EE-41F0-BC58-BB163C08890A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,10 @@ Global
 		{1260DADF-5A7F-4C5E-B1B6-C59AC665E99E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1260DADF-5A7F-4C5E-B1B6-C59AC665E99E}.Release|x86.ActiveCfg = Release|Any CPU
 		{1260DADF-5A7F-4C5E-B1B6-C59AC665E99E}.Release|x86.Build.0 = Release|Any CPU
+		{BC0A2077-65EE-41F0-BC58-BB163C08890A}.Debug|Any CPU.ActiveCfg = Debug
+		{BC0A2077-65EE-41F0-BC58-BB163C08890A}.Debug|x86.ActiveCfg = Debug
+		{BC0A2077-65EE-41F0-BC58-BB163C08890A}.Release|Any CPU.ActiveCfg = Release
+		{BC0A2077-65EE-41F0-BC58-BB163C08890A}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

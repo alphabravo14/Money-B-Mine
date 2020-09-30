@@ -22,15 +22,8 @@ namespace MBM
         public MainWindow(bool canManipulateData = false)
         {
             this.canManipulateData = canManipulateData;
-
             InitializeComponent();
             InitializeData(canManipulateData);
-
-            // GIT VERSION CONTROL
-
-            // INSTALLER PACKAGE
-
-            // FINISH DOCUMENTATION & SUBMIT
         }
 
         #region Data Loading
